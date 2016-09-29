@@ -1,0 +1,8 @@
+<td class="location {{ loc.active }}" data-toggle="tooltip" data-placement="bottom" title="{{ loc.user }}">
+    {% if loc.active == "active" %}
+    <a href="https://profile.intra.42.fr/users/{{ loc.user}}" target="_blank">
+    <img class="user_icon" src="https://cdn.intra.42.fr/users/{{ loc.user }}.jpg" onerror="this.onerror=''; this.src='http://www.clipartbest.com/cliparts/jTx/pxX/jTxpxX6Xc.png';">
+    </a>
+    {% endif %}
+    <div class="workstation">{{ loc.display }}</div>
+</td>

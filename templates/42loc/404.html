@@ -1,0 +1,72 @@
+{% load staticfiles %}
+<html>
+	<head>
+		<link rel="stylesheet" href="static/42loc/404.css">
+		<script src="static/42loc/js/404.js"></script>
+		<script src="static/42loc/js/jquery-3.1.0.min.js"></script>
+		<script src="static/42loc/js/typed-custom.js"></script>
+		<script type="text/javascript">
+			window.var_done = 0;
+			function redirect(){
+				if (window.var_done != 0)
+				{
+					setTimeout(function()
+					{
+						var s;
+						if (window.var_done == 1)
+						{
+							document.getElementById("notFoundTypedSecond").innerHTML = $("#notFoundTypedSecond").text()+"~";
+							setTimeout(function(){
+								window.location.href = "/";
+							}, 1000);
+						}
+						else if (window.var_done == 2)
+						{
+							document.getElementById("notFoundTypedSecond").innerHTML = $("#notFoundTypedSecond").text()+"-";
+							setTimeout(function(){
+								window.history.back()
+							}, 1000);
+						}
+					}, 100);
+				};
+			};
+
+			function set_buttons(){
+				$("#notFoundButton1").click(function(){window.var_done=1;second_typer();});
+				$("#notFoundButton2").click(function(){window.var_done=2;second_typer();});
+			}
+
+			function second_typer(){
+				$("#notFoundTypedSecond").typed(
+{					strings: [
+						"      <a id=\"notFoundButton1\">Home</a>      <a id=\"notFoundButton2\">Return</a>",
+						"cd "
+						],
+					typeSpeed: 200,
+					showCursor: false,
+					callback: redirect
+				});
+			};
+			$(function(){
+				$("#notFoundTyped").typed({
+					strings: [
+						"4 4 000 4 4<br>444 0 0 444<br>  4 000   4 <span style=\"font-size:1.3vh\">Locs42 version 0.01</span><br><br>You find yourself in a strange place<br><br>$\>Go Out of Bounds<br><br>You clip through a conveniently placed rock<span style=\"font-size:0.4vh\">omockas</span><br>Welcome to Out of Bounds<br><br>$\><span id=\"notFoundTypedSecond\">      <a id=\"notFoundButton1\">Home</a>      <a id=\"notFoundButton2\">Return</a></span>"
+						],
+					typeSpeed: 0,
+					cursorChar: "_",
+					callback: set_buttons
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="notFoundContainer">
+			<div id="notFoundTitle">
+				404
+			</div>
+			<div id="notFoundConsole">
+				<span id="notFoundTyped"></span>
+			</div>
+		</div>
+	</body>
+</html>

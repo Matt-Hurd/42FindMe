@@ -1,0 +1,77 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans';
+.cluster {
+    border-collapse: collapse;
+    width: calc(100% - 10px);
+    height: 100%;
+    margin-left:auto; 
+    margin-right:auto;
+    table-layout: fixed;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Open Sans', sans-serif;
+}
+.table_container {
+    height: 90%;
+    width: 100%;
+    background-image: url("/static/42loc/images/bg.gif");
+    background-repeat: repeat;
+    background-size: 500px 468px;
+}
+
+.location {
+    width: 10%;
+    height: 5%;
+    text-align: center;
+    vertical-align: bottom;
+}
+
+.header_top {
+    font-family: 'Megrim', cursive;
+    font-size: 250%;
+    text-align: center;
+}
+
+.nav{
+    border:1px solid #ccc;
+    border-width:1px 0;
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+
+.nav li{
+    display:inline;
+}
+.nav_item {
+   display:block;
+   float:left;
+   width:300px;
+   heigh:150px;
+   padding: 5px;
+}
+
+.cluster .active {
+    background-color: #ebffdd;
+}
+
+.blank {
+    background-color: #eeeeee;
+}
+
+.location, .cluster {
+    border: 1px solid #E4E8EB;
+}
+
+.user_icon {
+    max-width:75%;
+    height: auto;
+    vertical-align: top;
+    border-radius: 100%;
+}
+
+.workstation {
+    display: block;
+}
