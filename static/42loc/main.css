@@ -94,4 +94,17 @@ html, body {
 
 .workstation {
     display: block;
+    font-size: 0.8em;
+}
+
+.profile-img {
+    background-image: url('http://www.clipartbest.com/cliparts/jTx/pxX/jTxpxX6Xc.png');
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover;
+    border-radius: 50%;
+    width: 45px;
+    height: 45px;
+    margin: auto;
+    margin-top: 3px;
 }
