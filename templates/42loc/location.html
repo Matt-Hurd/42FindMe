@@ -1,7 +1,7 @@
 <td class="location {{ loc.active }}" data-toggle="tooltip" data-placement="bottom" title="{{ loc.user }}">
     {% if loc.active == "active" %}
     <div>
-    <a href="https://profile.intra.42.fr/users/{{ loc.user}}" target="_blank">
+    <a href="https://profile.intra.42.fr/users/{{ loc.user}}" target="_blank" class="hoverOn" data-dev-id="{{ loc.user }}">
     	<div class="profile-img" style="background-image: url('https://cdn.intra.42.fr/users/{{ loc.user }}.jpg')"></div>
     </a>
     </div>
