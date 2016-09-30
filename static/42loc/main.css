@@ -53,6 +53,26 @@ html, body {
    padding: 5px;
 }
 
+.footer{
+    border:1px solid #ccc;
+    border-width:1px 0;
+    list-style:none;
+    margin:0;
+    padding:0;
+    text-align:center;
+}
+
+.footer li{
+    display:inline;
+}
+.footer_item {
+   display:block;
+   float:left;
+   width:300px;
+   heigh:150px;
+   padding: 5px;
+}
+
 .cluster .active {
     background-color: #ebffdd;
 }
