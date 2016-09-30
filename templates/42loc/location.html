@@ -1,8 +1,10 @@
 <td class="location {{ loc.active }}" data-toggle="tooltip" data-placement="bottom" title="{{ loc.user }}">
     {% if loc.active == "active" %}
+    <div>
     <a href="https://profile.intra.42.fr/users/{{ loc.user}}" target="_blank">
-    <img class="user_icon" src="https://cdn.intra.42.fr/users/{{ loc.user }}.jpg" onerror="this.onerror=''; this.src='http://www.clipartbest.com/cliparts/jTx/pxX/jTxpxX6Xc.png';">
+    	<div class="profile-img" style="background-image: url('https://cdn.intra.42.fr/users/{{ loc.user }}.jpg')"></div>
     </a>
+    </div>
     {% endif %}
-    <div class="workstation">{{ loc.display }}</div>
+    <span class="workstation">{{ loc.display }}</span>
 </td>

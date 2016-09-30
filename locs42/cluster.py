@@ -66,16 +66,17 @@ def build_clusters():
                 cluster_layout[cnum] = []
                 for row in range(len(x)):
                     cluster_layout[cnum].append([])
-                    for column in range(len(x[row])):
-                        n = x[row][column].strip()
-                        if 'e1z1r' in n:
-                            cluster_layout[cnum][row].append(Location(n, n.split('p')[1], '', 0))
-                        elif 'Bocal' in n:
-                            cluster_layout[cnum][row].append(Location(n, "B-" + n.split('-')[2], '', 0))
-                        elif n and (n[0] == 'x' or n[0].lower() == 'r'):
-                            cluster_layout[cnum][row].append(Location('', '' if not n or n[0].lower() != 'r' else n, '', 'blank'))
-                        else:
-                            cluster_layout[cnum][row].append(Location('', '', '', ''))
+                    if len(x[row]) > 1:
+                        for column in range(len(x[row])):
+                            n = x[row][column].strip()
+                            if 'e1z1r' in n:
+                                cluster_layout[cnum][row].append(Location(n, n.split('p')[1], '', 0))
+                            elif 'Bocal' in n:
+                                cluster_layout[cnum][row].append(Location(n, "B-" + n.split('-')[2], '', 0))
+                            elif n and (n[0] == 'x' or n[0].lower() == 'r'):
+                                cluster_layout[cnum][row].append(Location('', '' if not n or n[0].lower() != 'r' else n, '', 'blank'))
+                            else:
+                                cluster_layout[cnum][row].append(Location('', '', '', ''))
 
 def update_clusters():
     locs = get_locations()
