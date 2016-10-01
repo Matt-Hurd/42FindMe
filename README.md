@@ -10,12 +10,12 @@ My knowledge of webdev is extremely limited, and I am looking for more people to
 
 1. Clone the git repository
 2. Install the requirements
-	pip install -r requirements.txt
+	`pip install -r requirements.txt`
 3. Run Migrations to create the database
-	python manage.py migrate
+	`python manage.py migrate`
 4. Start the server
-	python manage.py runserver --insecure
-5. Access the Site on http://127.0.0.1:8080
+	`python manage.py runserver --insecure`
+5. Access the Site on `http://127.0.0.1:8000`
 
 # Questions and Issues
 

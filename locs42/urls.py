@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+<<<<<<< HEAD
 from locs42.views import gen_cluster, error404, beta
+=======
+from locs42.views import *
+>>>>>>> 40f951635264f6f1fd3b045c259cb9fb30ca8e44
 from django.conf.urls import handler404
 
 handler404 = error404
@@ -24,6 +28,6 @@ handler404 = error404
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     url(r'^$', gen_cluster),
-    url(r'^cluster([1-2])$', gen_cluster),
-    url(r'^beta$', beta)
+    url(r'^cluster([1-3])/', gen_cluster),
+    url(r'^user-data/(?P<username>[-\w]+)/?', get_user_data)
 ]
