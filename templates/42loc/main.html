@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static '42loc/main.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static '42loc/hoverCard.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Megrim" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
     <link rel="apple-touch-icon" sizes="180x180" href="/static/42loc/favicons/apple-touch-icon.png">
@@ -34,6 +35,7 @@
             </table>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="{% static '42loc/hoverCard.js' %}"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
         <script>
         $(function () {
@@ -42,6 +44,18 @@
             });
         });
         </script>
+<<<<<<< HEAD
         {% include "footer.html" %}
+=======
+        <script type="text/javascript">
+            $('.hoverOn').hoverCards({
+              url: 'https://getUserData/', //passing general url to which id stored in 'data-dev-id' can be appended
+              backgroundColor: '#eee', // to change the color of the card,
+              fadeIn: 800, // fade in time in milliseconds
+              fadeOut: 400, // fade out time in milliseconds
+              delay: 100 // triggers the hoverCard if user hovers for more than specified delay (in ms)
+            });
+        </script>
+>>>>>>> 40f951635264f6f1fd3b045c259cb9fb30ca8e44
     </body>
 </html>

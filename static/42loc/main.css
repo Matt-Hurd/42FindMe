@@ -108,3 +108,19 @@ html, body {
     margin: auto;
     margin-top: 3px;
 }
+
+.hover-img {
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: cover;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin: 5px 10px;
+    display: inline-block;
+}
+
+.userDetail {
+    display: inline-block;
+    margin-top: 15px;
+}
