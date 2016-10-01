@@ -16,11 +16,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-<<<<<<< HEAD
-from locs42.views import gen_cluster, error404, beta
-=======
 from locs42.views import *
->>>>>>> 40f951635264f6f1fd3b045c259cb9fb30ca8e44
 from django.conf.urls import handler404
 
 handler404 = error404
