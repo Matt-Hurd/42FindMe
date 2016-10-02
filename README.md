@@ -1,6 +1,6 @@
 # Introduction
 
-Locs42 is currently a clone of [Stud42](https://stud42.fr/) for 42US. The aim is to present the locations of all the students in the cluster in an effective manner.
+42Find.me is currently a clone of [Stud42](https://stud42.fr/) for 42US. The aim is to present the locations of all the students in the cluster in an effective manner.
 
 Currently, it is only being worked on by me (Mhurd). It is running on a cloud9 server, but I aim to soon move it to a dedicated server with it's own domain.
 

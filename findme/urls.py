@@ -1,4 +1,4 @@
-"""locs42 URL Configuration
+"""findme URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/1.9/topics/http/urls/
@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from locs42.views import *
+from findme.views import *
 from django.conf.urls import handler404
 
 handler404 = error404
