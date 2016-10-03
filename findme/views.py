@@ -54,11 +54,8 @@ def get_user_data(request, username):
                     user_data['projects_finished'].append(project['project']['name'])
                 elif project['status'] == "in_progress":
                     user_data['projects_inprogress'].append(project['project']['name'])
-        if user_data['projects_finished']:
-            user_data['projects_finished'] = ', '.join(user_data['projects_finished'])
-        else:
-            user_data['projects_finished'] = "-"
-        user_data['projects_inprogress'] = ', '.join(user_data['projects_inprogress'])
+        user_data['projects_finished'] = ', '.join(user_data['projects_finished']) if user_data['projects_finished'] else "-"
+        user_data['projects_inprogress'] = ', '.join(user_data['projects_inprogress']) if user_data['projects_inprogress'] else "-"
 
         locations = requests.get('https://api.intra.42.fr/v2/users/'+username+'/locations/?access_token=' + access_token).json()
         for location in locations:

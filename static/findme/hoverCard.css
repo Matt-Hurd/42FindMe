@@ -62,7 +62,7 @@
           }
         } 
     .hoverParent .hoverCard{
-      border: 1px solid rgb(221, 221, 221); padding: 5px; border-radius: 3px; width: 400px;
+      border: 1px solid rgb(221, 221, 221); padding: 5px; border-radius: 5px; width: 400px;
       position: absolute;
       background: #fff;
       z-index: 1000;
@@ -85,7 +85,7 @@
       border-radius: 50%; width: 108px;
     }
     .hoverParent .userDetail{
-      vertical-align: top; display: inline-block; margin-left: 12px; font-size: 17px; margin-top: 0px; width: 60%;
+      vertical-align: top; display: inline-block; margin-left: 12px; font-size: 17px; margin-top: 10px; width: 50%;
     }
     .hoverParent .userDetail > .name{
       font-weight: bold;
