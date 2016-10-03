@@ -65,17 +65,20 @@
 
 	    function createCard(user){
 	        var data = '<div class="hoverCard"><div class="arrow-up"></div><div class="userPic" style="background-color:'+settings.backgroundColor+'"><div class="hover-img" style="background-image:url('+user.pic+')"></div>';
-	        data += '<div class="userDetail"><span class="name"><strong>'+user.name+'</strong></span><span> ('+user.username+') </span>';
-	        data += '<p class="small role text-muted">'+user.role+' - <span class="about small"><strong>Online for</strong> '+calculateSince(user.online_since)+'</span></p>';
-    		data += '</div></div>';
-        	data += '<div class="userStats"><div><strong>Completed</strong><p>'+user.projects_finished+'</p></div>';
-        	data += '<div><strong>Current Project(s)</strong><p>'+user.projects_inprogress.substring(0,140)+'</p></div>';
+	        data += '<div class="userDetail"><span class="name"><strong>'+user.name+'</strong></span>';
+	        data += '<p class="small role text-muted"><strong> ('+user.username+') </strong>- '+user.role+'</p>';
+    		data += '<p class="about small"><strong>Online for</strong> '+calculateSince(user.online_since)+'</p>';
+    		data += '<p class="small role text-muted"><strong> Level (Piscine C) : </strong>'+user.piscine_level+'</p>';
+    		data += '<p class="small role text-muted"><strong> Level (42) : </strong>'+user.program_level+'</p></div></div>';
+        	data += '<div class="userStats"><div><strong>Current Project(s)</strong><p>'+user.projects_inprogress.substring(0,140)+'</p></div>';
+        	data += '<div><strong>Completed Project(s)</strong><p>'+user.projects_finished+'</p></div></div>';
         	attachCard(data);	        
 	    }
 
 	    function calculateSince(datetime)
 		{
 		    var tTime=new Date(datetime);
+		    tTime.setHours(tTime.getHours() + 7);
 		    var cTime=new Date();
 		    var sinceMin=Math.round((cTime-tTime)/60000);
 		    if(sinceMin==0)
@@ -99,7 +102,7 @@
 		          var since='1 minute';
 		    }
 		    else if(sinceMin<45)
-		        var since=sinceMin+' a few minutes';
+		        var since='about '+sinceMin+' minutes';
 		    else if(sinceMin>44&&sinceMin<60)
 		        var since='about an hour';
 		    else if(sinceMin<1440){
