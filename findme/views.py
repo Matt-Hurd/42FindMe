@@ -32,6 +32,7 @@ def get_user_data(request, username):
         user_data['username'] = data['login']
         user_data['name'] = data['displayname']
         user_data['pic'] = data['image_url']
+        user_data['pic'] = "/static/findme/images/reasaw.jpg" if data['login'] == "reasaw" 
         user_data['correction'] = data['correction_point']
         user_data['wallet'] = data['wallet']
 
@@ -42,9 +43,9 @@ def get_user_data(request, username):
 
         for cursus in data['cursus_users']:
             if cursus['cursus_id'] == 4:
-                user_data['piscine_level'] = cursus['level']
+                user_data['piscine_level'] = '{0:,.2f}'.format(cursus['level'])
             elif cursus['cursus_id'] == 1:
-                user_data['program_level'] = cursus['level']
+                user_data['program_level'] = '{0:,.2f}'.format(cursus['level'])
 
         user_data['projects_finished'] = []
         user_data['projects_inprogress'] = []
