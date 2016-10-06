@@ -34,32 +34,32 @@ def get_locations():
     x = 1
     page = 1
     while x:
-    	with contextlib.closing(urllib2.urlopen(url + "&page=" + str(page))) as x:
-    		result = json.load(x)
-    		if not result:
-    			x = 0
-    		locations += result
-    	page += 1
+        with contextlib.closing(urllib2.urlopen(url + "&page=" + str(page))) as x:
+            result = json.load(x)
+            if not result:
+                x = 0
+            locations += result
+        page += 1
     
     clean = {}
     
     for l in locations:
-    	clean[l["host"]] = l["user"]["login"]
+        clean[l["host"]] = l["user"]["login"]
     return clean
 
 class Location:
-	def __init__(self, name, display, user, active):
-		self.name = name
-		self.user = user
-		self.display = display
-		self.active = active
-		
+    def __init__(self, name, display, user, active):
+        self.name = name
+        self.user = user
+        self.display = display
+        self.active = active
+        
 def build_clusters():
     global cluster_layout
     if cluster_layout == None:
         cluster_layout = {}
-    for c in os.listdir("/home/root/findme/static/findme/layouts/"):
-        with open("/home/root/findme/static/findme/layouts/" + c, "rb") as f:
+    for c in os.listdir("static/findme/layouts/"):
+        with open("static/findme/layouts/" + c, "rb") as f:
             x = [z.split(',') for z in f.read().split('\n')]
             cnum = c.split('.')[0]
             if not cnum in cluster_layout.keys():
