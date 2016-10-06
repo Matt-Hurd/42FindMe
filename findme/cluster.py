@@ -12,6 +12,8 @@ import settings
 
 access_token = None
 cluster_layout = None
+user_data_storage = {}
+user_locations = {}
 
 def update_access_token():
     global access_token
@@ -19,6 +21,8 @@ def update_access_token():
     r = requests.post("https://api.intra.42.fr/oauth/token", data={'grant_type': 'client_credentials', 'client_id': uid, 'client_secret': secret}, verify=False)
     r.raise_for_status()
     access_token = r.text[17:81]
+
+booting = 1
 
 def get_locations():
     if (access_token == None):
@@ -46,6 +50,14 @@ def get_locations():
     
     for l in locations:
         clean[l["host"]] = l["user"]["login"]
+    
+    if not booting:
+        for u in clean.values():
+            if u not in user_data_storage.keys():
+                with contextlib.closing(urllib2.urlopen('https://api.intra.42.fr/v2/users/'+u+'/?access_token=' + access_token)) as x:
+                    user_data_storage[u] = json.load(x)
+                with contextlib.closing(urllib2.urlopen('https://api.intra.42.fr/v2/users/'+u+'/locations/?access_token=' + access_token)) as x:
+                    user_locations[u] = json.load(x)
     return clean
 
 class Location:
@@ -54,7 +66,8 @@ class Location:
         self.user = user
         self.display = display
         self.active = active
-        
+       
+
 def build_clusters():
     global cluster_layout
     if cluster_layout == None:
@@ -96,8 +109,24 @@ def update_clusters():
 def get_cluster(x):
     return cluster_layout[x]
     
+
+def update_loc_storage():
+    if not booting:
+        for u in get_locations().values():
+            with contextlib.closing(urllib2.urlopen('https://api.intra.42.fr/v2/users/'+u+'/?access_token=' + access_token)) as x:
+                user_data_storage[u] = json.load(x)
+            with contextlib.closing(urllib2.urlopen('https://api.intra.42.fr/v2/users/'+u+'/locations/?access_token=' + access_token)) as x:
+                user_locations[u] = json.load(x)
+    
 def update_loop():
     threading.Timer(60.0, update_loop).start()
     print("[%s] Updating locations" % time.strftime("%Y-%m-%d %H:%M:%S"))
     update_clusters()
+    
+def update_location_storage_loop():
+    threading.Timer(300.0, update_location_storage_loop).start()
+    print("[%s] Updating projects" % time.strftime("%Y-%m-%d %H:%M:%S"))
+    update_loc_storage()
 update_loop()
+update_location_storage_loop()
+booting = 0
