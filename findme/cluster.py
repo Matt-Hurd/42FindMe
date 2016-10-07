@@ -14,6 +14,7 @@ access_token = None
 cluster_layout = None
 user_data_storage = {}
 user_locations = {}
+online = 0
 
 def update_access_token():
     global access_token
@@ -25,6 +26,7 @@ def update_access_token():
 booting = 1
 
 def get_locations():
+    global online
     if (access_token == None):
         update_access_token()
     else:
@@ -48,7 +50,9 @@ def get_locations():
     
     clean = {}
     
+    online = 0
     for l in locations:
+        online += 1
         clean[l["host"]] = l["user"]["login"]
     
     if not booting:

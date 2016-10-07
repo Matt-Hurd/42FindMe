@@ -9,12 +9,8 @@ import requests
 
 def gen_cluster(request, number="1"):
     cluster = get_cluster(number)
-    return render(request, 'main.html', {'cluster' : cluster, 'number' : number})
+    return render(request, 'main.html', {'cluster' : cluster, 'number' : '1', 'online' : online})
 
-def beta(request):
-    cluster = get_cluster('1')
-    return render(request, 'beta.html', {'cluster' : cluster, 'number' : '1'})
-    
 def error404(request):
     return HttpResponse(render(request, '404.html'), status=404)
 
