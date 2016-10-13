@@ -8,6 +8,7 @@ import copy
 import threading
 from secrets import secret, uid
 import time
+from datetime import datetime, timedelta
 import settings
 
 access_token = None
@@ -50,11 +51,12 @@ def get_locations():
     
     clean = {}
     
-    online = 0
     for l in locations:
-        online += 1
-        clean[l["host"]] = l["user"]["login"]
+        t =  datetime.strptime(l["begin_at"], "%Y-%m-%dT%H:%M:%S")
+        if (datetime.now() - t) < timedelta(1):
+            clean[l["host"]] = l["user"]["login"]
     
+    online = len(clean)
     if not booting:
         for u in clean.values():
             if u not in user_data_storage.keys():
@@ -87,7 +89,7 @@ def build_clusters():
                     if len(x[row]) > 1:
                         for column in range(len(x[row])):
                             n = x[row][column].strip()
-                            if 'e1z1r' in n:
+                            if 'e1z%sr' %(cnum) in n:
                                 cluster_layout[cnum][row].append(Location(n, n.split('p')[1], '', 0))
                             elif 'Bocal' in n:
                                 cluster_layout[cnum][row].append(Location(n, "B-" + n.split('-')[2], '', 0))
