@@ -9,6 +9,7 @@ import threading
 from secrets import secret, uid
 import time
 import settings
+from datetime import datetime, timedelta
 
 access_token = None
 cluster_layout = None
@@ -50,11 +51,11 @@ def get_locations():
     
     clean = {}
     
-    online = 0
+
     for l in locations:
-        online += 1
-        clean[l["host"]] = l["user"]["login"]
-    
+        if not l["end_at"]:
+            clean[l["host"]] = l["user"]["login"]
+    online = len(clean)
     if not booting:
         for u in clean.values():
             if u not in user_data_storage.keys():

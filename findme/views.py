@@ -6,13 +6,19 @@ import urllib2
 import contextlib
 import json
 import requests
+import keen
+import logging
+import sendgrid
+import csv
+from sendgrid.helpers.mail import *
+
+def error404(request):
+    return HttpResponse(render(request, '404.html'), status=404)
 
 def gen_cluster(request, number="1"):
     cluster = get_cluster(number)
     return render(request, 'main.html', {'cluster' : cluster, 'number' : '1', 'online' : online})
-
-def error404(request):
-    return HttpResponse(render(request, '404.html'), status=404)
+#    return render(request, '503.html')
 
 def get_user_data(request, username):
     if (access_token == None):
@@ -24,8 +30,6 @@ def get_user_data(request, username):
         user_data['username'] = data['login']
         user_data['name'] = data['displayname']
         user_data['pic'] = data['image_url']
-        if data['login'] == "reasaw":
-            user_data['pic'] = "/static/findme/images/reasaw.jpg"
         user_data['correction'] = data['correction_point']
         user_data['wallet'] = data['wallet']
 

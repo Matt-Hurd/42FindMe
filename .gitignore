@@ -2,4 +2,10 @@ findmeenv/
 findme/apache
 findme/secrets.py
 static/admin/
-
+server*
+*.pyc
+*.bak
+findme/compare.py
+findme/find_cards.py
+.gitignore
+static/assets/

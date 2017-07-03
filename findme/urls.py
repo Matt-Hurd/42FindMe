@@ -18,12 +18,20 @@ from django.conf.urls import url
 from django.contrib import admin
 from findme.views import *
 from django.conf.urls import handler404
+from findme.find_cards import find_cards_view
 
 handler404 = error404
 
 urlpatterns = [
-    # url(r'^admin/', admin.site.urls),
+#    url(r'^admin/', admin.site.urls),
     url(r'^$', gen_cluster),
-    url(r'^cluster([1-3])/', gen_cluster),
-    url(r'^user-data/(?P<username>[-\w]+)/?', get_user_data)
+    url(r'^cluster([1])/', gen_cluster),
+#    url(r'^find_cards/', find_cards_view)
+#    url(r'^cantina/([a-z]+)', get_phished),
+#    url(r'^got_phished/([a-z0-9]+)', got_phished),
+#    url(r'^leaving/([a-z]+)', leaving_phish),
+#    url(r'^dashboard', phish_analytics),
+#    url(r'^send_phish', send_phish),
+#    url(r'^sendphish/(.*)', sendphish),
+#    url(r'^user-data/(?P<username>[-\w]+)/?', get_user_data)
 ]
