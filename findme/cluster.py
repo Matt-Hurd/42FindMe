@@ -1,23 +1,18 @@
 import requests
-import sys
 import urllib2
 import contextlib
 import json
 import os
-import copy
 import threading
 from secrets import secret, uid
 import time
-from datetime import datetime, timedelta
 import settings
-from datetime import datetime, timedelta
 
 access_token = None
 cluster_layout = None
 user_data_storage = {}
 user_locations = {}
 online = 0
-
 
 def update_access_token():
     global access_token
@@ -45,7 +40,7 @@ def get_locations():
             update_access_token()
 
     url = 'http://api.intra.42.fr/v2/campus/7/locations?access_token=%s&per_page=100&filter[active]=true&page=' % (
-    access_token)
+        access_token)
     locations = []
     x = 1
     page = 1
@@ -128,6 +123,7 @@ def update_clusters():
 def get_cluster(x):
     return cluster_layout[x]
 
+
 def update_loc_storage():
     if not booting:
         for u in get_locations().values():
@@ -155,6 +151,6 @@ def update_location_storage_loop():
         update_loc_storage()
         time.sleep(290)
 
-
-threading.Thread(target=update_loop, args = ()).start()
-threading.Thread(target=update_location_storage_loop, args = ()).start()
+requests.packages.urllib3.disable_warnings()
+threading.Thread(target=update_loop, args=()).start()
+threading.Thread(target=update_location_storage_loop, args=()).start()

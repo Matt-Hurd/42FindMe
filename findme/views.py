@@ -6,7 +6,6 @@ from django.http import HttpResponse, JsonResponse
 def error404(request):
     return HttpResponse(render(request, '404.html'), status=404)
 
-
 def gen_cluster(request, number="1"):
     cluster = get_cluster(number)
     return render(request, 'main.html', {'cluster': cluster, 'number': '1', 'online': online})
