@@ -1,20 +1,15 @@
 from django.shortcuts import render
-import datetime
 from cluster import *
 from django.http import HttpResponse, JsonResponse
-import urllib2
-import contextlib
-import json
-import requests
-import logging
-import csv
+
 
 def error404(request):
     return HttpResponse(render(request, '404.html'), status=404)
 
+
 def gen_cluster(request, number="1"):
     cluster = get_cluster(number)
-    return render(request, 'main.html', {'cluster' : cluster, 'number' : '1', 'online' : online})
+    return render(request, 'main.html', {'cluster': cluster, 'number': '1', 'online': online})
 #    return render(request, '503.html')
 
 def get_user_data(request, username):
@@ -49,8 +44,10 @@ def get_user_data(request, username):
                     user_data['projects_finished'].append(project['project']['name'])
                 elif project['status'] == "in_progress":
                     user_data['projects_inprogress'].append(project['project']['name'])
-        user_data['projects_finished'] = ', '.join(user_data['projects_finished']) if user_data['projects_finished'] else "-"
-        user_data['projects_inprogress'] = ', '.join(user_data['projects_inprogress']) if user_data['projects_inprogress'] else "-"
+        user_data['projects_finished'] = ', '.join(user_data['projects_finished']) if user_data[
+            'projects_finished'] else "-"
+        user_data['projects_inprogress'] = ', '.join(user_data['projects_inprogress']) if user_data[
+            'projects_inprogress'] else "-"
 
         locations = user_locations[username]
         for location in locations:

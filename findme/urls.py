@@ -15,9 +15,7 @@ Including another URLconf
     3. Add a URL to urlpatterns:  url(r'^blog/', include(blog_urls))
 """
 from django.conf.urls import url
-from django.contrib import admin
 from findme.views import *
-from django.conf.urls import handler404
 
 handler404 = error404
 
@@ -25,6 +23,7 @@ urlpatterns = [
 #    url(r'^admin/', admin.site.urls),
     url(r'^$', gen_cluster),
     url(r'^cluster([1])/', gen_cluster),
+    url(r'^user-data/(?P<username>[-\w]+)/?', get_user_data)
 #    url(r'^find_cards/', find_cards_view)
 #    url(r'^cantina/([a-z]+)', get_phished),
 #    url(r'^got_phished/([a-z0-9]+)', got_phished),
@@ -32,5 +31,4 @@ urlpatterns = [
 #    url(r'^dashboard', phish_analytics),
 #    url(r'^send_phish', send_phish),
 #    url(r'^sendphish/(.*)', sendphish),
-#    url(r'^user-data/(?P<username>[-\w]+)/?', get_user_data)
 ]
