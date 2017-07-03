@@ -18,7 +18,6 @@ from django.conf.urls import url
 from django.contrib import admin
 from findme.views import *
 from django.conf.urls import handler404
-from findme.find_cards import find_cards_view
 
 handler404 = error404
 

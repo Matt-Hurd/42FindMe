@@ -6,11 +6,8 @@ import urllib2
 import contextlib
 import json
 import requests
-import keen
 import logging
-import sendgrid
 import csv
-from sendgrid.helpers.mail import *
 
 def error404(request):
     return HttpResponse(render(request, '404.html'), status=404)
