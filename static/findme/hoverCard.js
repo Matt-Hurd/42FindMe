@@ -69,8 +69,8 @@
             data += '<p class="small role text-muted"><strong> (' + user.username + ') </strong></p>';
             data += '<p class="about small"><strong>Online for</strong> ' + calculateSince(user.online_since) + '</p>';
             data += '<p class="small role text-muted"><strong> Level (Piscine C) : </strong>' + user.piscine_level + '</p>';
-            data += '<div class="userStats"><div><strong>Current Project(s)</strong><p>' + user.projects_inprogress.substring(0, 140) + '</p></div>';
-            data += '<div><strong>Completed Project(s)</strong><p>' + user.projects_finished + '</p></div></div>';
+            // data += '<div class="userStats"><div><strong>Current Project(s)</strong><p>' + user.projects_inprogress.substring(0, 140) + '</p></div>';
+            // data += '<div><strong>Completed Project(s)</strong><p>' + user.projects_finished + '</p></div></div>';
             attachCard(data);
         }
 
