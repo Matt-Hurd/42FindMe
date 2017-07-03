@@ -8,6 +8,7 @@ import copy
 import threading
 from secrets import secret, uid
 import time
+from datetime import datetime, timedelta
 import settings
 from datetime import datetime, timedelta
 
@@ -19,7 +20,7 @@ online = 0
 
 def update_access_token():
     global access_token
-    
+
     r = requests.post("https://api.intra.42.fr/oauth/token", data={'grant_type': 'client_credentials', 'client_id': uid, 'client_secret': secret}, verify=False)
     r.raise_for_status()
     access_token = r.text[17:81]
@@ -36,7 +37,7 @@ def get_locations():
                     json.load(x)["error"] == "Not authorized"
         except:
             update_access_token()
-    
+
     url = 'http://api.intra.42.fr/v2/campus/7/locations?access_token=%s&per_page=100&filter[active]=true&page=' % (access_token)
     locations = []
     x = 1
@@ -48,9 +49,8 @@ def get_locations():
                 x = 0
             locations += result
         page += 1
-    
+
     clean = {}
-    
 
     for l in locations:
         if not l["end_at"]:
@@ -71,7 +71,7 @@ class Location:
         self.user = user
         self.display = display
         self.active = active
-       
+
 
 def build_clusters():
     global cluster_layout
@@ -88,7 +88,7 @@ def build_clusters():
                     if len(x[row]) > 1:
                         for column in range(len(x[row])):
                             n = x[row][column].strip()
-                            if 'e1z1r' in n:
+                            if 'e1z%sr' %(cnum) in n:
                                 cluster_layout[cnum][row].append(Location(n, n.split('p')[1], '', 0))
                             elif 'Bocal' in n:
                                 cluster_layout[cnum][row].append(Location(n, "B-" + n.split('-')[2], '', 0))
@@ -110,10 +110,10 @@ def update_clusters():
                     l.active = 'empty'
                     l.user = '';
     return cluster_layout
-    
+
 def get_cluster(x):
     return cluster_layout[x]
-    
+
 
 def update_loc_storage():
     if not booting:
@@ -122,12 +122,12 @@ def update_loc_storage():
                 user_data_storage[u] = json.load(x)
             with contextlib.closing(urllib2.urlopen('https://api.intra.42.fr/v2/users/'+u+'/locations/?access_token=' + access_token)) as x:
                 user_locations[u] = json.load(x)
-    
+
 def update_loop():
     threading.Timer(60.0, update_loop).start()
     print("[%s] Updating locations" % time.strftime("%Y-%m-%d %H:%M:%S"))
     update_clusters()
-    
+
 def update_location_storage_loop():
     threading.Timer(300.0, update_location_storage_loop).start()
     print("[%s] Updating projects" % time.strftime("%Y-%m-%d %H:%M:%S"))
